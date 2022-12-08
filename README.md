@@ -1,9 +1,18 @@
-# Functionality
+# TikTok Comment Scraper for Text Analysis
+
+This modified version of [cubernetes' TikTok scraper](https://github.com/cubernetes/TikTokCommentScraper) 
+only scrapes the basic information of a tiktok (user, url, description) and the comments. The outputted
+xlsx file can then be used as input for text analysis.
+
+
+# Original README:
+
+## Functionality
 This comment scraper/extractor manages to get all the comments
 from virtually any TikTok post. This can be useful for giveaways, votes or other bigger
 community interactions.
 
-# Installation
+## Installation
 Contrary to convention, this repo does contain the virtual environment it's
 running on (**Windows**, for Linux see below), so it's instantly usable also for people how don't want to first install python and requirements.
 The python environment is heavily stripped down (\~7MB).
@@ -17,15 +26,15 @@ Alternatively, download the zip directly if you don't have git installed:
 
 If you're running Windows 7 and therefore don't even have curl installed, just download the zip directly from this repo and extract it.
 
-# Requirements
+## Requirements
 Python requirements would be (if you don't want to use the venv or if you aren't using Windows):
 
 `pyperclip`
 
 `openpyxl`
 
-# Usage
-## TL;DR
+## Usage
+### TL;DR
 - open your favorite **chromium** (e. g. Chrome, Brave, Chromium) based browser
 - go to the TikTok post you want to scrape the comments from (make sure you can already scroll the comments manually)
 - press F12 (goto developer console) or CTRL+SHIFT+J (should open the console directly)
@@ -41,7 +50,7 @@ Python requirements would be (if you don't want to use the venv or if you aren't
 You can also watch this video: https://youtu.be/FsQEm2zalWA
 or if you don't have time: https://youtu.be/lYZw75k7QVc
 
-## In Detail
+### In Detail
 
 This comment scraper uses the chrome developer console (chromium based browser
 recommended/maybe needed), JavaScript and Python. The JavaScript (which is
@@ -75,7 +84,7 @@ It will fetch the CSV-formatted clipboard content and
 convert it to a .xlsx file which can be opened in e.g. LibreOffice Calc or
 Microsoft Excel.
 
-# Limits
+## Limits
 
 This comment scraper was tested on a few posts with up to 3000 commments on a
 middle-tier laptop where it got a little bit laggy during the comment loading
@@ -89,10 +98,11 @@ pretty much always with many comments. In the 3000 comments test, 64 comments
 were never loaded and therefore not included in the .xlsx file. Fortunately,
 this percentage is negligible most of the time.
 
+### More limitations found
 Attempted scraper with a post with 6000+ comments. A substantial amount of
 comments were lost. Only around 460 comments were recorded.
 (More accurately: 468/ 6554 comments recorded, 6086 lost)
 
-Attempted scrapwer with a post of 18.3K comments. Same issue where a substantial
+Attempted scraper with a post of 18.3K comments. Same issue where a substantial
 amount were lost (6392 comments recorded). This time, it incorrectly
 recorded the total number of comments, recording only 18 instead of 18,300.
