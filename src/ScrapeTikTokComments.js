@@ -10,6 +10,9 @@ with({
     var publisherProfileUrlXPath         = '//span[contains(@class, "SpanUniqueId")]';
     var nicknameAndTimePublishedAgoXPath = '//span[contains(@class, "SpanOtherInfos")]';
 
+    // we will filter these later because we have to handle them differently depending on what layout we have
+    var likesCommentsSharesXPath         = "//strong[contains(@class, 'StrongText')]";
+
     var postUrlXPath                     = '//div[contains(@class, "CopyLinkText")]'
     var descriptionXPath                 = '//h4[contains(@class, "H4Link")]/preceding-sibling::div'
 
@@ -50,21 +53,41 @@ with({
     }
 
     // if there's an actual date, formats it as DD-MM-YYYY (though TikTok displays it as MM-DD)
-    function formatDate(strDate) {
-        if (typeof strDate !== 'undefined' && strDate !== null) {
+    function formatDate(strDate)
+    {
+        if (typeof strDate !== 'undefined' && strDate !== null)
+        {
             f = strDate.split('-');
-            if (f.length == 1) {
+            if (f.length == 1)
+            {
                 return strDate;
-            } else if (f.length == 2) {
+            }
+            else if (f.length == 2)
+            {
                 return f[1] + '-' + f[0] + '-' + (new Date().getFullYear());
-            } else if (f.length == 3) {
+            }
+            else if (f.length == 3)
+            {
                 return f[2] + '-' + f[1] + '-' + f[0];
-            } else {
+            }
+            else
+            {
                 return 'Malformed date';
             }
-        } else {
+        }
+        else
+        {
             return 'No date';
         }
+    }
+
+    function extractNumericStats()
+    {
+        var strongTags = getElementsByXPath(likesCommentsSharesXPath);
+        // the StrongText class is used on lots of things that aren't likes or comments; the last two or three are what we need
+		// if it's a direct URL, shares are displayed, so we want the last three; if not, we only want the last two
+        likesCommentsShares = parseInt(strongTags[(strongTags.length - 3)].outerText) ? strongTags.slice(-3) : strongTags.slice(-2);
+        return likesCommentsShares;
     }
 
     function csvFromComment(comment)
@@ -136,7 +159,9 @@ with({
 
     // direct URLs don't include a place to copy the link (since it'd be redundant) so just grab the actual page URL
     var url = window.location.href.split('?')[0]
-
+    var likesCommentsShares = extractNumericStats();
+    var likes = likesCommentsShares[0].outerText;
+    var totalComments = likesCommentsShares[1].outerText;
 
     var csv = 'Post URL,' + url + '\n';
     csv += 'Publisher Nickname,' + nicknameAndTimePublishedAgo[0] + '\n';
