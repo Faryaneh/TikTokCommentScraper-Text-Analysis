@@ -172,7 +172,7 @@ with({
     var totalReplies = 0;
     var repliesSeen = 1; // Offset of replies from corresponding parent comment
     for (var i = 0; i < comments.length; i++) {
-        csv += count + ',' + csvFromComment(comments[i]) + ',';
+        csv += count + ',' + csvFromComment(comments[i]);
         if (i > 0 && isReply(comments[i]))
         {
             repliesSeen += 1;
