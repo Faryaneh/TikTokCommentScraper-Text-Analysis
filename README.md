@@ -6,6 +6,7 @@ csv file can then be used as input for text analysis.
 
 
 # Original README:
+*With some edits to reflect updates
 
 ## Functionality
 This comment scraper/extractor manages to get all the comments
@@ -33,19 +34,24 @@ Python requirements would be (if you don't want to use the venv or if you aren't
 
 `openpyxl`
 
+Or run the following command to install requirements:
+```
+pip install -r requirements.txt
+```
+
 ## Usage
 ### TL;DR
-- open your favorite **chromium** (e. g. Chrome, Brave, Chromium) based browser
+- open your favorite **chromium** (e.g. Chrome, Brave, Chromium) based browser
 - go to the TikTok post you want to scrape the comments from (make sure you can already scroll the comments manually)
 - press F12 (goto developer console) or CTRL+SHIFT+J (should open the console directly)
-- open Windows file explorer in root of this project folder (where the .cmd files are)
+- open Windows file explorer in the cmdPrompts folder (where the .cmd files are)
 - double click 'Copy JavaScript for Developer Console.cmd'
-	- **if you're not using Windows**, just run the src/CopyJavascript.py file manually with python (see requirements)
+	- **if you're not using Windows**, just run the ScrapeComments/CopyJavascript.py file manually with python (see requirements)
 - go back to developer console; paste the javascript; run it
 - wait until it says 'CSV copied to clipboard!'
 - go back to file explorer; double click 'Extract Comments from Clipboard.cmd'
-	- **if you're not using Windows**, just run the src/ScrapeTikTokComments.py file manually with python (see requirements)
-- voilá, the file 'Comments_<UtcTimeStamp>.xlsx' will now contain all the comments and additional information
+	- **if you're not using Windows**, just run the ScrapeComments/ScrapeTikTokComments.py file manually with python (see requirements)
+- voilá, the file 'Comments_<UtcTimeStamp>.csv' will now contain all the comments and additional information
 
 You can also watch this video: https://youtu.be/FsQEm2zalWA
 or if you don't have time: https://youtu.be/lYZw75k7QVc
@@ -54,9 +60,9 @@ or if you don't have time: https://youtu.be/lYZw75k7QVc
 
 This comment scraper uses the chrome developer console (chromium based browser
 recommended/maybe needed), JavaScript and Python. The JavaScript (which is
-documentated and located in 'src\ScrapeTikTokComments.js') is copied to the clipboard when the '.\Copy
+documentated and located in 'ScrapeComments\ScrapeTikTokComments.js') is copied to the clipboard when the '.\Copy
 JavaScript for Developer Console.cmd' file is run (you can also copy
-manually or run src/CopyJavascript.py). With the TikTok post open (so you can see and scroll the
+manually or run ScrapeComments/CopyJavascript.py). With the TikTok post open (so you can see and scroll the
 comments), open the developer console with F12, CTRL+SHIFT+I/J, CTRL+SHIFT+C
 or somehow through the settings. In the interactive console tab, paste the
 JavaScript and execute it. To be sure the JavaScript hasn't been tampered,
@@ -79,7 +85,7 @@ string that is in CSV-format will be copied to the clipboard.
 
 When the debug message 'CSV copied to clipboard!' appears, it's finished. Now,
 without copying anything new obviously, click the 'Extract Comments from
-Clipboard.cmd' file or run the src/ScrapeTikTokComments.py file manually (see requirements).
+Clipboard.cmd' file or run the ScrapeComments/ScrapeTikTokComments.py file manually (see requirements).
 It will fetch the CSV-formatted clipboard content and
 convert it to a .xlsx file which can be opened in e.g. LibreOffice Calc or
 Microsoft Excel.
