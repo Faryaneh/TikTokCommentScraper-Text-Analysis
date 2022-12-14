@@ -2,7 +2,7 @@
 
 This modified version of [cubernetes' TikTok scraper](https://github.com/cubernetes/TikTokCommentScraper) 
 only scrapes the basic information of a tiktok (user, url, description) and the comments. The outputted
-xlsx file can then be used as input for text analysis.
+csv file can then be used as input for text analysis.
 
 
 # Original README:
