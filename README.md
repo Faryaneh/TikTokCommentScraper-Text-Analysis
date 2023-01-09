@@ -1,8 +1,8 @@
-# TikTok Comment Scraper for Text Analysis
+# TikTok Comment Scraper
 
 This modified version of [cubernetes' TikTok scraper](https://github.com/cubernetes/TikTokCommentScraper) 
-only scrapes the basic information of a tiktok (user, url, description) and the comments. The outputted
-csv file can then be used as input for text analysis.
+only scrapes the basic information of a tiktok (user, url, description) and the comments into a CSV file
+for use in text analysis (not included in this repository).
 
 
 # Original README:
